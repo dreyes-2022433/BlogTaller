@@ -5,13 +5,6 @@ import { Card, CardHeader, CardBody, CardFooter, Text ,Heading, Box} from '@chak
 export const CardsPosts =({title,description,course,comments,creationDate})=> {
   return (
     <>
-    <Box padding="4"
-            bg="blue.400"
-            color="black"
-            marginTop='5px'
-            borderRadius="lg"
-            boxShadow="lg"
-            >
 <Card>
     <CardHeader>
       <Heading size='md'> {title}</Heading>
@@ -23,11 +16,10 @@ export const CardsPosts =({title,description,course,comments,creationDate})=> {
       <Text>{course}</Text>
     </CardFooter>
     <CardFooter>
-      <h1>Fecha</h1>
+      <h1>Fecha: </h1>
       <Text>{creationDate}</Text>
     </CardFooter>
   </Card>
-  </Box>
     </>
   );
   

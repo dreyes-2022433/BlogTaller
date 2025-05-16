@@ -18,6 +18,21 @@ export const getPostsRequest = async () => {
     }
 }
 
+export const addCommentRequest = async (data) => {
+    try{
+        return await api.put('/post/addcomment',{
+            type: 'mulpart/form-data',
+            data
+        })
+    }catch (error) {
+        return {
+            error: true,
+            error
+        }
+    }
+}
+
+
 export const getCoursesRequest = async () => {
     try{
         return await api.get('/course/getcourses')
