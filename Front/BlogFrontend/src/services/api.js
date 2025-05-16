@@ -19,11 +19,9 @@ export const getPostsRequest = async () => {
 }
 
 export const addCommentRequest = async (data) => {
+
     try{
-        return await api.put('/post/addcomment',{
-            type: 'mulpart/form-data',
-            data
-        })
+        return await api.put('/post/addComment', data)
     }catch (error) {
         return {
             error: true,

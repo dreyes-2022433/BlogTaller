@@ -9,7 +9,6 @@ export const NavRender = () => {
     useEffect(() => {
         getCourses()
     }, [])
-    console.log(courses);
     return (
         <>
         <Tabs variant='soft-rounded' colorScheme='green' color='white'>

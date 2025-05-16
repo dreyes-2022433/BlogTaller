@@ -1,7 +1,9 @@
 import React from "react"
+import { useForm } from 'react-hook-form'
 import {
-  
-  ListItem,
+  Card,
+  CardBody,
+  Text,
   Drawer,
   DrawerBody,
   DrawerFooter,
@@ -14,9 +16,27 @@ import {
   Input
 } from '@chakra-ui/react'
 
-export const Comments=({ name,content,creationDate})=> {
+export const Comments=({postId ,onSubmitForm})=> {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
+  
+  const  {
+    register,
+    handleSubmit,
+    formState: { errors }
+} = useForm({
+    mode: 'onTouched',
+    defaultValues: {
+        postId:postId,
+        name: '',
+        content: ''
+    }
+})
+const addComment = (data)=>{
+  //hook personalizado
+  //addPost
+  onSubmitForm(data)
+}
   return (
     <>
       <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
@@ -27,21 +47,41 @@ export const Comments=({ name,content,creationDate})=> {
         placement='right'
         onClose={onClose}
         finalFocusRef={btnRef}
+        onSubmit = {handleSubmit(addComment)}
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
-
+          <DrawerHeader>Coloca Tu nombre </DrawerHeader>
           <DrawerBody>
-            <Input placeholder='Type here...' />
-          </DrawerBody>
+          <form onSubmit={handleSubmit(addComment)}>
 
+            <Input
+              placeholder="Nombre..."
+              {...register('name', { required: 'El nombre es obligatorio' })}
+            />
+            {errors.name && <p>{errors.name.message}</p>}
+            <br />
+
+           
+            <Input
+              placeholder="Comentario..."
+              {...register('content', { required: 'El comentario es obligatorio', minLength: '10' })}
+            />
+            {errors.content && <p>{errors.content.message}</p>}
+            <br />
+
+    
+            
+            <Button type="submit" colorScheme="blue" mt={4}>
+              Enviar Comentario
+            </Button>
+          </form>
+          </DrawerBody>
           <DrawerFooter>
             <Button variant='outline' mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button colorScheme='blue'>Save</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -51,11 +91,12 @@ export const Comments=({ name,content,creationDate})=> {
 
 export const CommentsList = ({ name,content,creationDate}) => {
   return (
-    < >
-    <p>{name}</p>
-  <ListItem>{content}</ListItem>
-    <p>{creationDate}</p>
-  </>
+    <Card >
+  <CardBody>
+    <h1>{name}</h1>
+    <Text>{content}</Text>
+  </CardBody>
+</Card>
 
   )
 }

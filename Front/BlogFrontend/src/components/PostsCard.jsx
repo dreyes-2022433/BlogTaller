@@ -5,7 +5,7 @@ import { Card, CardHeader, CardBody, CardFooter, Text ,Heading, Box} from '@chak
 export const CardsPosts =({title,description,course,comments,creationDate})=> {
   return (
     <>
-<Card>
+<Card w={''}>
     <CardHeader>
       <Heading size='md'> {title}</Heading>
     </CardHeader>
