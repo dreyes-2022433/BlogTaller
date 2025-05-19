@@ -2,7 +2,7 @@ import React from "react"
 import { Card, CardHeader, CardBody, CardFooter, Text ,Heading, Box} from '@chakra-ui/react'
 
 
-export const CardsPosts =({title,description,course,comments,creationDate})=> {
+export const CardsPosts =({title,description,course,link,creationDate})=> {
   return (
     <>
 <Card w={''}>
@@ -12,6 +12,9 @@ export const CardsPosts =({title,description,course,comments,creationDate})=> {
     <CardBody>
       <Text>{description}</Text>
     </CardBody>
+    <CardFooter>
+      <Text>{link}</Text>
+    </CardFooter>
     <CardFooter>
       <Text>{course}</Text>
     </CardFooter>

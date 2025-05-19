@@ -1,12 +1,14 @@
-import { Tab,TabList,TabPanels,Tabs,TabPanel } from "@chakra-ui/react";
+import { Tab } from "@chakra-ui/react";
 
 
-   export const Navpages = ({courseName}) => {
+   export const Navpages = ({courseName, setSelectedCourse}) => {
     
     return (
         
 <>
-    <Tab>{courseName}</Tab>
+   <Tab onClick={() => setSelectedCourse(courseName)}>
+        {courseName}
+    </Tab>
  
 </>
     )

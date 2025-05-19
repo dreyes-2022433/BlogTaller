@@ -4,12 +4,14 @@ import { CardsPosts } from "../components/PostsCard"
 import { useContextPosts } from "../shared/hooks/useContextPosts"
 import { Comments, CommentsList } from "../components/Comments/Comments"
 import { usePost } from "../shared/hooks/usePost"
+import { NavRender } from "./NavRender"
 
 
 
 export const Postspage = () => {
   const { posts } = useContextPosts()
   const {addComment} = usePost()
+  const [selectedCourse, setSelectedCourse] = useState(null);
   const createComment = (data)=>{
     console.log(data)
     addComment(data)
@@ -21,18 +23,23 @@ export const Postspage = () => {
       [postId]: !prev[postId],
     }));
   };
+  
+   const filteredPosts = selectedCourse
+    ? posts.filter(post => post.course?.courseName === selectedCourse)
+    : posts;
 
   return (
     <>
+    <Box bg="blue.200" width='100%' padding="0px">
+    <NavRender setSelectedCourse={setSelectedCourse}/>
+    </Box>
       <SimpleGrid spacing={10}
-        marginLeft={'25vh'}
+        marginLeft={'35vh'}
         templateColumns="repeat(auto-fill, minmax(120vh, 2fr))"
-        
-        // Ocupa el 50% de la altura de la pantalla
         overflowY="auto"
       >
 
-        {posts?.map((post) => (
+        {filteredPosts?.map((post) => (
           <
           >
           
@@ -48,6 +55,7 @@ export const Postspage = () => {
                 key={post._id}
                 title={post.title}
                 description={post.description}
+                link={post.link}
                 course={[post.course.courseName]}
                 creationDate={post.creationDate}
 

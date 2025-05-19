@@ -3,8 +3,8 @@ import Post from './Post.model.js'
 
 export const addPost = async (req, res) => {
     try {
-        const { title, description, course, creationDate } = req.body
-        const post = new Post({ title, description, course, creationDate })
+        const { title, description, course, creationDate,link } = req.body
+        const post = new Post({ title, description, course, creationDate,link })
         await post.save()
         res.status(201).json({
             status: 'success',

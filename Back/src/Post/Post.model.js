@@ -1,4 +1,7 @@
 import { Schema, model } from "mongoose"
+import moment from "moment"
+
+
 
 const PostSchema = new Schema({
     title: {
@@ -16,9 +19,14 @@ const PostSchema = new Schema({
         ref: 'Course',
         required: [true, 'Course is required'],
     },
+    link: {
+        type: String,
+        required: [true, 'Link is required'],
+        
+    },
     creationDate: {
        type: String,
-        
+        default: moment().format('L')
     },
     comments : [{
         name: {
@@ -28,7 +36,8 @@ const PostSchema = new Schema({
             type: String,
         },
         creationDate: {
-            type: String,
+        type: String,
+        default: moment().format('L')
         }
         
     }]

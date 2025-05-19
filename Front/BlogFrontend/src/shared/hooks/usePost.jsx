@@ -4,7 +4,6 @@ import toast from 'react-hot-toast'
 
 export const usePost = () => {
     const [posts, setPosts] = useState(null)
-    const [fetchingComments, setFetchingComments] = useState(second)
     const getPosts = async()=>{
        const response = await getPostsRequest()
        console.log(response)
